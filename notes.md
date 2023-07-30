@@ -217,14 +217,12 @@ Nesta aula, aprendemos:
 TableView com múltiplas células
 A TableView é sem dúvida um dos componentes mais utilizados na construção da interface do usuário. Por isso, avançamos nossos conhecimentos entendendo como podemos utilizá-la para mostrar mais de uma célula na lista.
 
+#### 30/07/2023
+
 @02-Utilizando UIStackView
 
 @@01
 Projeto da aula anterior
-<<<<<<< HEAD
-PRÓXIMA ATIVIDADE
-=======
->>>>>>> 5bf4c9b (Class 02 - Using UIStackView done)
 
 Se você deseja começar o curso a partir desta aula, pode fazer o download do projeto desenvolvido até o momento.
 
@@ -446,3 +444,296 @@ O que aprendemos?
 Nesta aula, aprendemos:
 Uso do StackView
 O StackView permite que você aproveite o poder do Auto Layout, criando interfaces de usuário que podem se adaptar dinamicamente à orientação do dispositivo, ao tamanho da tela e qualquer alteração disponível no espaço disponível.
+
+@03-Criando uma nova tela
+
+@@01
+Projeto da aula anterior
+
+Se você deseja começar o curso a partir desta aula, pode fazer o download do projeto desenvolvido até o momento.
+
+https://github.com/alura-cursos/alura-viagens-parte-II/archive/c06844e01476cff6124e2bea89a9fec33f17a47f.zip
+
+@@02
+Criando novo ViewController
+
+[00:00] Com a nova célula para a home criada, agora vamos partir para uma nova funcionalidade que vai ser a tela de detalhes. A ideia é o usuário conseguir selecionar uma viagem, um pacote de viagem na home, e nós o levemos para a tela de detalhes.
+[00:20] O objetivo desse capítulo é continuarmos estudando sobre UIStack View. Nós começamos a ver na criação da célula para a home e agora vamos praticar mais um pouco para aprendermos como desenvolvemos de fato utilizando a Stack View para telas um pouco mais complexas, como essa daqui.
+
+[00:20] Quando falamos em criar uma nova tela, logo vem em mente criarmos um novo “View Controller”, uma nova view. Então, tem basicamente duas maneiras de se fazer isso quando estamos utilizando o Interface Builder, que é através do Storyboard ou utilizando XIB. Vamos ver essas duas formas.
+
+[01:05] Começando pelo Storyboard, como eu faria? Vou vir aqui no nosso “storyboard”, vou vir no menu “Library”, clico nele e procuro por “View Controller”. Seleciono o “View Controller” e arrasto para dentro do Storyboard.
+
+[01:26] Então, criei uma nova view. Quando crio uma nova view, eu preciso criar um arquivo que herde de “UIViewController” para controlar de fato essa view, e é isso que vamos fazer agora. Eu tenho a view e preciso do arquivo que controle essa view.
+
+[01:45] Dentro da pasta “View”, no menu lateral esquerdo, vou clicar com o botão direito, vou vir em “New File/Novo Arquivo”, vou optar essa opção “Cococa Touch Class”, vou dar um “Next”, e aqui é importante que a opção “Subclasse de” esteja selecionada a opção “UIViewController”.
+
+[02:09] Se no seu caso não estiver, basta você selecionar essa flecha do lado e procurar por “UIViewController”. Vamos deixar desmarcada essa opção “Also create XIB file” nesse momento, e vou dar um nome para o “ViewController, vou chamar de “DetalheViewController”.
+
+[02:29] Vou dar um “Next” e um “Create”. Ele criou aqui para baixo então vamos organizar um pouco. Vou fechar essa pasta, vou fechar essa pasta do “Header” e vou arrastá-lo aqui logo embaixo do nosso “ViewController.swift” da home.
+
+[02:49] Então, quando eu crio uma view aqui no Storyboard, eu preciso indicar para essa view que existe um arquivo que vai controlá-la. Então, como fazemos isso? Vou selecionar o “View Controller”, vou abrir o menu lateral direito e, nessa quarta opção, temos essa caixa de “Class”.
+
+[03:13] Repara que não tem nenhum arquivo aqui, e é exatamente aqui que vamos configurá-lo indicando que esse novo arquivo que nós criamos vai controlar essa view.
+
+[03:23] Então, vou digitar “DetalheViewController” e, outra coisa que também precisamos fazer é colocar um identificador para essa view. No momento que formos instanciar esse “Controller”, nós precisamos indicar qual “View Controller” dentro do Storyboard nós queremos instanciar.
+
+[03:46] Repara que podemos ter vários. Já temos a home, temos a tela de detalhes, poderíamos ter um terceiro, um quarto, um quinto, enfim, muitas possibilidades. O que eu recomendo é não utilizar. Se você optar por trabalhar com Storyboard, use o mesmo Storyboard para todos os fluxos da sua aplicação.
+
+[04:07] Já trabalhei em projetos que para carregar o Storyboard demorava muito tempo, o projeto começa a ficar pesado. Então, se você optar por utilizar o Storyboard, você pode criar vários Storyboards.
+
+[04:18] Por exemplo, se você tem um aplicativo e você precisa do fluxo de login, você pode criar um Storyboard somente para o fluxo de login. “Mas tenho também o fluxo de cadastrar usuário, são várias telas”, posso criar outro Storyboard com somente as telas de cadastro de usuário.
+
+[04:38] Então, deixar toda a aplicação dentro de um único Storyboard não é aconselhável. Se você optar por trabalhar com Storyboard, tem essa possibilidade que fica bem melhor: um Storyboard para cada fluxo do seu app.
+
+[04:53] Voltando aqui então, vou deixar por enquanto sem o identificador para você ver como vamos utilizá-lo, depois voltamos e o colocamos. O importante é que colocamos aqui que essa classe “DetalheViewController” vai ser a classe que vai controlar essa view.
+
+[05:11] Agora vamos voltar na home, que é esse “ViewController”, e precisamos pensar no seguinte: quando eu faço um clique em uma célula da Table View, eu preciso, de alguma forma, ter acesso a esse evento, ou seja, eu preciso saber quando o usuário deu um clique na Table View.
+
+[05:30] Tem um método bem interessante, que faz parte do protocolo de “UITableViewDelegate”, que se chama “didSelectRow”, ou seja, acabou de selecionar uma célula”, algo nesse sentido. Quando o usuário acaba de selecionar uma célula, é disparado esse método e nós conseguimos, então, fazer o que nós precisamos que, no caso, é chamar um novo “View Controller”.
+
+[05:53] Então, dentro da extensão do nosso ViewController, onde estamos implementando o protocolo de UITableViewDelegate, eu vou procurar por didSelectRow. Repara que ele já nos traz como sugestão esse método e é exatamente ele que nós precisamos.
+
+[06:11] E, dentro dele, eu posso fazer tudo que eu quiser quando o usuário fizer um clique em um item da Table View. O que eu vou fazer, então? Vou precisar instanciar aquele “View Controller”. Como faço isso?
+
+[06:28] Vou declarar uma constante, vou chamar de detalheController. Como ele está dentro do nosso “Main.storyboard”, que é esse arquivo aqui, eu preciso chamar a classe UIStoryboard e posso inicializar um Storyboard através do nome.
+
+[06:54] Vamos lá então, qual é o nome do nosso Storyboard? O nome do nosso Storyboard é “Main”, “Main.storyboard”, então coloco só a primeira parte antes do ponto. Vou colocar aqui “Main”. O Bundle está no mesmo pacote de arquivos, então não preciso especificar nada, posso passar aqui nil.
+
+[07:16] Só que quando eu faço isso, eu tenho acesso ao Storyboard, e eu não quero ter acesso ao Storyboard inteiro. Eu quero ter acesso ao Storyboard e, dentro dele, quero ter acesso a esse controller que acabamos de criar.
+
+[07:31] Então, como faço isso? Tem um método aqui que se chama instantiateViewController e eu passo um identificador. E é nesse momento que nós vamos utilizar o identificador que ainda não colocamos. Por isso que é importante colocar o identificador para cada ViewController dentro do Storyboard.
+
+[07:52] Eu costumo colocar o mesmo nome do arquivo, então repara que aqui o nome da nossa classe é “DetalheViewController”, eu vou utilizar o mesmo nome no “Storyboard ID”. Mas se você quiser colocar qualquer coisa, você pode colocar, desde que coloque o mesmo valor no método, senão pode ocorrer um crash.
+
+[08:13] Eu costumo colocar o mesmo nome da classe, então já setei esse valor. E quando eu volto e coloco o identificador, eu tenho acesso ao ViewController. O que eu vou fazer agora? Vou fazer a navegação para a próxima tela. Para qual tela? Para a tela de detalhes.
+
+[08:37] Então, o que vou fazer? navigationController.push, quero puxar o próximo ViewController, e passo aqui o detalheController. Aqui eu tenho uma flag, se quero fazer isso de forma animada ou não, então vou passar true, porque quero que seja de forma animada.
+
+[09:00] Vamos ver se dessa forma que está aqui ele vai funcionar. Vou rodar no simulador do iPhone 11, vou gerar um build e vamos testar se vai funcionar dessa forma.
+
+[09:16] Acabamos de subir o simulador, vou clicar em cima de uma célula e repara que não está acontecendo nada. Eu clico e não ocorre nada. Nós podemos investigar esse problema de algumas formas. Primeiro, precisamos ver se realmente está caindo nesse método quando eu faço o clique na célula.
+
+[09:40] O curso não é especificamente de debug, mas vou utilizar um break point, que é essa flecha azul. Isso significa que quando esse código for chamado, ele vai parar nessa etapa, e aí nós conseguimos fazer alguma coisa.
+
+[09:57] Ou seja, se eu fizer um clique na célula e realmente para nesse break point, significa que o nosso método está sendo disparado de forma correta. Então, vamos testar.
+
+[10:09] Cliquei aqui, ele caiu dentro desse método. Significa que o evento está sendo disparado. Vou passar, vou clicar nesse botão de baixo para continuar a execução do nosso programa.
+
+[10:27] Primeira coisa que precisávamos ver era se o método estava sendo chamado. Vimos que está. Agora precisamos ver essa linha aqui, que de fato é a linha que faz o push, ou seja, que faz a navegação para a próxima tela. Nós precisamos ver se essa parte está funcionando.
+
+[10:46] Então, vou fazer a mesma coisa. Vou clicar novamente em uma célula, só que agora vou para a linha de baixo. Para ir para a linha de baixo, vou clicar nessa seta aqui, “Próxima etapa”.
+
+[11:00] Cliquei aqui, ele parou agora na linha 73. Nesse bloco, eu consigo fazer alguns comandos para verificar se, por exemplo, a variável navigationController existe, ou seja, ela deve existir para conseguir fazer o push.
+
+[11:18] Vou digitar uma palavra reservada que é po, espaço e o nome da variável, navigationController. Vou dar um “Enter” e olha só que interessante, navigationController está retornando nil, ou seja, não tem valor nenhum dentro dessa variável navigationController.
+
+[11:37] Como ela está nil, ou seja, não há valor nenhum, ele não consegue fazer a navegação para a próxima etapa. O debug serviu para nos ajudar a entender que, se alguma vez você estiver tentando fazer uma navegação clicando ou de alguma outra forma e não estiver acontecendo nada, uma dica é verificar se a variável navigationController existe.
+
+[12:00] Vou tirar esse break point do código, vou clicar e arrastar para fora, e vou continuar a execução do programa clicando nessa seta aqui.
+
+[12:11] A variável navigationController está nil, então precisamos entender o porquê disso. Eu vou voltar no “storyboard”, vou dar um zoom um pouco menor. Então, nós temos duas telas: a home e a nova tela de detalhes que estamos criando agora.
+
+[12:33] Quando trabalhamos com navegação de telas, existe um componente chamado “Navigation Controller”, e precisamos dele para fazer essa navegação. Nós não temos aqui no nosso Storyboard. Então, é esse o problema. Sem o “Navigation Controller”, nós não conseguimos fazer a navegação de telas.
+
+[12:55] Para resolver esse problema, vamos incluir um novo navigationController no Storyboard. Aqui de novo na “Library”, na nossa “Biblioteca”, eu vou procurar por “Navigation Controller”, que é esse aqui, vou clicar e arrastar aqui para dentro.
+
+[13:13] Repara que, quando eu faço isso, ele já traz um “Root View Controller”. É um View Controller que ele traz por padrão, por default, para começarmos o nosso aplicativo. Nesse caso, não vou utilizar esse “View Controller” aqui, vou utilizar somente o “Navigation Controller”.
+
+[13:35] Então, vou clicar fora, clico nesse “View Controller” que eu não quero e aperto o “Delete”. Eu preciso, somente, do “Navigation Controller”.
+
+[13:49] Outra coisa importante: tem uma seta aqui, quando trabalhamos com Storyboard, que indica qual “View Controller” deve ser instanciado quando esse Storyboard for utilizado.
+
+[14:00] Nesse caso, é a home, mas nós queremos que, a partir de agora, o primeiro elemento dentro do Storyboard que vai ser executado, que ele vai ler, seja o “Navigation Controller’. Então, vou clicar nessa seta e arrastar para trás.
+
+[14:16] E quando faço isso, eu preciso indicar para o “Navigation Controller” qual é o primeiro “Controller” que ele deve enter como o “View Controller” que ele vai navegar, ou seja, que ele vai mostrar.
+
+[14:27] Nesse caso, vai ser o “View Controller” da home. Então, vou segurar a tecla “Ctrl” e vou arrastar para cá. Aí ele abre esse popover aqui com várias opções, a opção que vamos selecionar é esse “root view controller”.
+
+[14:46] Então, vou gerar um novo build só para testarmos essa implementação do “Navigation Controller” que é importante entendermos. Repara que quando colocamos o “Navigation Controller”, ele já traz uma barra superior que vamos ignorar daqui a pouco, mas o importante é clicarmos e ele nos levar de fato para uma próxima tela.
+
+[15:13] Então, o objetivo desse vídeo era isso, mostrar como nós fazemos navegação entre telas. Nós criamos um “View Controller” dentro do Storyboard, e a seguir nós continuamos estudando outras formas de se trabalhar com a navegação de telas e criação do “View Controller”.
+
+@@03
+Criando ViewController com xib
+
+[00:00] Nós acabamos de criar o novo “View Controller” de detalhes através do Storyboard. Nós temos aqui o “Controller” de detalhe. Uma coisa que eu queria mostrar para você é que, quando nós colocamos um “Navigation Controller”, ele adicionou essa nova barra aqui em cima, que é a top bar do “Navigation Controller”, e nós conseguimos ocultar isso da seguinte maneira:
+[00:27] Eu vou selecionar o “Navigation Controller”, vou abrir o menu lateral direito e tenho essa opção chamada “Top Bar”, vou escolher a opção “Nenhuma”, clico aqui.
+
+[00:41] Repara que aqui ele já sumiu da nossa “View”. Vou rodar de novo o simulador para testarmos e essa configuração vai solucionar esse problema para nós.
+
+[00:55] Quando faço o scroll, repara que agora não tenho mais a barra superior, porque nós ocultamos através do “Top Bar”. Outra forma de criarmos essas views e o “View Controller” é através do XIB, que é isso que quero mostrar para você nesse vídeo.
+
+[01:15] Nós utilizamos aqui o Storyboard, incluímos mais um “View Controller”, criamos a classe para controlá-lo, porém, existe outra maneira que também é muito utilizada no mercado, que vou mostrar para você.
+
+[01:30] Para fazer isso, eu vou excluir esse “View Controller”, vou deletá-lo daqui, e também vou excluir essa classe que nós criamos aqui. Vou vir em “Delete” e vou escolher a opção “Move to Trash”, essa primeira opção.
+
+[01:49] Nós continuamos com a home e o “Navigation Controller”, e vamos então criar uma nova view. O que eu vou fazer aqui só para manter o nosso projeto um pouco mais organizado?
+
+[02:04] Vou criar uma nova pasta, “New Group”, vou nomear como “DetalheViewController”, vou arrastá-la um pouco para baixo e, aqui dentro, crio o nosso arquivo de XIB e a classe para controlá-lo.
+
+[02:25] Então, vou vir em “Novo Arquivo”, aqui vou manter a opção “Cocoa Touch Class” selecionada. Aqui é importante você manter a opção de “Subclasse de UIViewController”, caso o seu ainda não esteja. E vamos nomear, então, para “DetalheViewController”.
+
+[02:45] Aqui, vou marcar essa opção “Também criar o XIB file”. Vou ticar essa opção, vou dar um “Next” e ele vai criar para nós, dentro dessa pasta que acabamos de criar.
+
+[03:01] Vou começar apagando alguns comentários que nós não vamos utilizar, vou apagar aqui também. Qual a diferença, então? Repara que agora eu tenho a classe do ViewController e tenho a view desacoplada do Storyboard.
+
+[03:18] Então, o que eu vou fazer? Vou selecionar essa view de fundo, vou alterar o “Background” dele para qualquer outra cor, só para testarmos. Vou escolher essa cor, por exemplo.
+
+[03:29] E agora temos que voltar no método onde temos a ação do clique de um elemento para conseguimos refatorar porque nós não estamos mais utilizando Storyboard, estamos utilizando XIB, então precisamos inicializar de uma forma um pouco diferente.
+
+[03:49] O evento que é disparado quando selecionamos um item na Table View é esse de didSelectRowAt. Aqui, nós estamos utilizando o UIViewController e, dessa forma, instanciamos a view que estiver dentro do Storyboard.
+
+[04:05] Mas, como eu disse, nós não estamos mais utilizando Storyboard, então vou apagar essa parte aqui e vou instanciar a view de detalhe. Como faço isso? DetalheViewController. Tenho aqui alguns tipos de inicialização, vou escolher essa aqui, nibName.
+
+[04:25] O nibName nada mais é do que o nome da própria view, então, entre string, vou passar o nome da view que nós criamos, ”DetalheViewController”, e o segundo parâmetro é esse bundle, que é o pacote. Como está tudo no mesmo pacote, não temos outros targets, então eu passo como nil.
+
+[04:45] Estou inicializando o meu XIB dessa maneira, agora vou rodar mais uma vez o simulador para testarmos e ver se realmente a nossa implementação está funcionando.
+
+[05:01] Vou selecionar aqui qualquer viagem, clico aqui e abro da mesma maneira que estávamos abrindo a view no Storyboard. Então, tem duas maneiras que vimos aqui de se trabalhar com o Interface Builder: através do Storyboard e através do XIB.
+
+[05:18] Qual a diferença? Qual é melhor, qual é pior? Na verdade, é um pouco polêmico isso porque cada desenvolvedor tem suas considerações sobre esse assunto, mas o que é fato é que todas elas têm pontos positivos e pontos negativos.
+
+[05:34] Quando falamos, por exemplo, do Storyboard, é muito mais fácil entender o fluxo do aplicativo quando você consegue desenhar esse fluxo dentro de um mesmo Storyboard.
+
+[05:47] Por exemplo, se você vai desenvolver o fluxo de login, é muito mais fácil de entender se você criar as telas com a navegação lado a lado do fluxo de login, então você olha o Storyboard e já tem uma noção de como é o fluxo do seu aplicativo.
+
+[06:03] Quando você cria uma view isolada com o XIB, você não tem muita noção de onde é chamado, de onde vem, então esse é um dos pontos negativos do XIB e um dos pontos positivos do Storyboard.
+
+[06:17] Quando nós criamos através do XIB, o maior ganho que a galera da comunidade costuma comentar é em relação ao desacoplamento dessa view do Storyboard. Como assim, desacoplamento?
+
+[06:31] Quando nós começamos a criar as view no Storybard, nós criamos uma espécie de dependência entre as views. Por exemplo, eu tenho aqui uma “Table View” e quando faço o clique em uma célula da “Table View”, eu abro outra tela, um outro “View Controller”. Estou ilustrando o exemplo.
+
+[06:51] Porém, essa tela que está dentro do fluxo do Storyboard pode ser chamada de outro lugar da aplicação. Então, será que faz sentido ela estar dentro do fluxo do login, por exemplo, se ela pode ser chamada de outro lugar?
+
+[07:05] Você começa a criar algumas dependências que não são tão interessantes com o Storyboard. Já o XIB é muito melhor nessa questão por causa disso, porque você consegue criar a view desacoplada e fica muito mais fácil de você reutilizar essa view em outros pontos da sua aplicação.
+
+[07:27] Então, a comunidade costuma trabalhar um pouco mais com o XIB quando falamos de Interface Builder por causa disso. Também nós temos criação de layout via código, que se chama View Code, que tem também seus prós e contras.
+
+[07:45] Como, por exemplo, é muito mais fácil fazer o code review quando você desenha a view via código porque você consegue ver o código da view. E quando nós desenhamos utilizando Interface Builder, ele gera um XML que nós não conseguimos entender muito bem o que está acontecendo.
+
+[08:06] Não tem como fazer um code review de uma view desse tipo por conta disso, então isso acaba sendo uma desvantagem.
+
+[08:15] Porém, é muito mais demorado no começo, quando você trabalha com View Code, de você criar as suas views, porque é mais trabalhoso, você tem que digitar todo o código na mão, você não tem essa facilidade de ir arrastando os elementos da biblioteca para dentro da view.
+
+[08:34] Então, não tem melhor, não tem pior, é importante você conhecer todos, porque você vai trabalhar em uma empresa, então provavelmente você vai pegar projetos diferentes ao decorrer do tempo, e pode ser que um esteja utilizando o Storyboard, outro esteja utilizando XIB e outro esteja utilizando o View Code.
+
+[08:53] Então, o ideal é você conhecer bem esses três tipos diferentes de construir o layout com UIkit.
+
+@@04
+Trabalhando com ScrollView
+
+[00:00] De volta com o nosso projeto, a ideia é continuarmos com a tela de detalhes, mas antes, eu queria mostrar para você um componente muito utilizado na criação da interface do usuário, das telas de aplicativos, que é o ScrollView.
+[00:19] O ScrollView nada mais é do que uma barra de rolagem que serve para mostrar mais elementos do que cabe na tela. Então, provavelmente você já viu em aplicativos, principalmente de marketplace, quando você clica em um produto e você vai ver os detalhes do produto.
+
+[00:35] Então, sempre tem um ScrollView que auxilia o usuário a visualizar mais informações do que pode caber na tela. Antes, de fato, de começarmos a implementação dessa tela, vamos falar um pouco sobre ScrollView, porque é muito importante você saber como usar.
+
+[00:55] Vou abrir a nossa biblioteca, vou procurar por “ScrollView”, vou clicar e arrastar para dentro. O ScrollView é um pouco mais chato de utilizar do que outros componentes porque tem algumas configurações a mais que precisamos fazer para que ele funcione.
+
+[01:15] Para começar, quando eu coloco qualquer elemento dentro do View Controller, eu posso citar as constraints para posicioná-lo onde eu quero na tela. Então, vou começar fazendo isso. Tenho o ScrollView selecionado, vou abrir o painel de “Constraints”, e vou colocar uma constraint 0 na margem superior, na margem da esquerda, da direita e aqui de baixo.
+
+[01:40] E vou clicar em “Adicionar constraints”. Repara que logo quando eu faço isso, ele já aponta erros. Se eu tivesse feito isso com qualquer outro elemento, funcionaria, como, por exemplo, uma view, uma imagem, uma label, qualquer coisa ele iria funcionar.
+
+[01:56] O que eu vou fazer aqui? Para corrigir esse problema, nós precisamos desabilitar uma configuração que o ScrollView tem, que é essa opção do “Content Layout Guides”.
+
+[02:15] Então, desabilitando essa opção, eu consigo utilizar as configurações da constraint que acabei de setar. Para vermos como funciona o ScrollView, vou utilizar um “Vertical Stack View” e vamos empilhar algumas views dentro do Stack View que vai estar dentro do ScrollView.
+
+[02:37] Então, a ideia é colocarmos várias Views coloridas que ultrapassem o tamanho da tela para vermos o scroll funcionando. Vou abrir a biblioteca, vou procurar por “View”, vou selecionar esse elemento e arrastar para dentro do ScrollView.
+
+[03:00] Na verdade, vamos utilizar uma Stack View, então vai ser uma “Vertical Stack View”. Vou arrastar para dentro do ScrollView. Eu costumo clicar e redimensionar do mesmo tamanho do Scroll manualmente.
+
+[03:22] “Mas poderia setar constraints com a margem com valor de 0”. Poderia, mas às vezes o Scode buga e não funciona muito bem, então eu costumo fazer isso manualmente, redimensioná-lo e depois, de fato, setar as constraints, que é o que vou fazer agora.
+
+[03:43] Com o Stack View selecionado, vou abrir o painel de constraints e vou setar constraints em todas as margens com o valor de “0”. Feito isso, vou clicar em “Adicionar”. Repara que temos vários erros: erro na margem esquerda e direita, erro na margem superior e erro na margem inferior.
+
+[04:06] Então, temos que corrigir algumas coisas. A primeira coisa que vamos fazer para corrigir esse erro da margem tanto esquerda quanto direita, é falar que a largura do “Stack View” vai ser a mesma largura do “Scroll View”.
+
+[04:24] Então, esses detalhes peculiares na utilização do ScrollView é importante você fazer e refazer várias vezes para pegar o jeito de como você configura corretamente o Scroll View. É legal praticar várias vezes para pegar o jeito de como faz a configuração do Scroll.
+
+[04:46] Então, o que eu vou fazer? Selecionei o “Stack View”, vou segurar a tecla “Ctrl”, vou arrastar para o “Scroll View” e vou selecionar essa opção, “Equal Widths”, que é a largura igual à do “Scroll View”.
+
+[05:00] Clico aqui, então já temos a solução de dois problemas, que é a margem esquerda e a margem direita, então já fizemos essa configuração da igualdade de larguras justamente para isso. Porém, ainda continuamos com um problema na margem superior e inferior, que nada mais é do que a altura do Stack View.
+
+[05:25] Ele não nenhuma altura, e o Stack View vai entender altura quando colocarmos algum elemento dentro. Por exemplo, vou colocar uma view e essa view vai ter uma altura, então ele assume que a altura do Stack View é a altura da view que eu citei com as constraints.
+
+[05:45] Vamos ver na prática que é mais fácil. Vou abrir o painel de biblioteca mais uma vez, vou procurar por “View”, clicar e arrastar para dentro do “Stack View”.
+
+[06:01] Uma coisa importante é você entender a hierarquia que está ocorrendo aqui. Tenho o “Scroll View”, dentro do “Scroll View” tenho o “Stack View”, e dentro do “Stack View” eu tenho essa “View” que acabei de adicionar.
+
+[06:16] Então, quando você fizer essa aula junto comigo, é importante que você tenha certeza que essa hierarquia está sendo seguida. “Scroll View”, dentro dele o “Stack View”, e dentro dele o conteúdo que nada mais é do que a “View” que eu acabei de incluir.
+
+[06:34] Continuamos com o problema de constraints, mas vamos solucionar agora. A “View” que eu acabei de colocar dentro do “Stack”, vou setar uma altura, por exemplo, de “200”. Poderia ser qualquer valor, estou colocando “200” só para ilustrar.
+
+[06:50] Adicionei e agora não temos mais problemas com constraints. Clico em todos os elementos, está tudo azul. Já solucionamos o problema de altura com a constraint de altura.
+
+[07:07] E como eu testo para ver se o Scroll View está funcionando? Vou começar alterando a cor dessa view, só para conseguirmos visualizar melhor, e vou copiar e colar essa view algumas vezes.
+
+[07:21] Vou alterar de verde para cinza, vou alterar de verde para roxo e vou alterar para amarelo. Por enquanto, ele não ultrapassou o tamanho da tela. Vamos fazer um teste? Vou rodar o nosso projeto no simulador para vermos se o Scroll já está ativo.
+
+[07:44] Não deveria, porque ainda não ultrapassamos o tamanho da tela do dispositivo, então só deveria mostrar de fato as views coloridas. E é isso que está acontecendo. Eu clico e arrasto, não acontece nada.
+
+[08:04] A partir de agora, vou copiar mais uma vez algumas views aqui, “Command + C” e “Command + V” para ganharmos tempo. Vou alterar para rosa; fiz mais uma cópia, vou alterar para azul; fiz mais uma cópia, vou alterar para essa cor de palha.
+
+[08:29] Agora, sim, nós temos mais conteúdo do que comporta o tamanho da tela. Então, provavelmente, quando eu testar isso no simulador, ele deve funcionar. Nós já temos aqui um componente que está funcionando com o Scroll View.
+
+[08:52] Por que eu quis mostrar isso antes de começarmos a implementação da nossa tela de detalhes? Porque é muito importante você ter a visão do todo. O que eu quero dizer com isso? Quando estamos construindo uma view, é importante entendermos a possibilidade de essa view, por exemplo, crescer.
+
+[09:12] Então, imagine se você não soubesse trabalhar com Stack View, que é o que estamos aprendendo agora, e se você não soubesse trabalhar com Scroll View, você fizesse essa tela de detalhes tudo com constraints, que foi o que aprendemos no curso anterior.
+
+[09:29] Está errado? Não está errado, mas é muito mais trabalhoso. Imagine se o produto de o time de UX sugere uma alteração nessa view, vai precisar inserir, por exemplo, o mapa de localização entre o título e a label de dias, de quantidade de dias ou de valor.
+
+[09:51] Você teria que remover todas as constraints, reposicionar todos os elementos manualmente, não teria Scroll, então seria um pouco bagunçado. Quando você já tem essa visão antes do desenvolvimento da view de “essa view pode crescer, não pode crescer, será que é melhor já começarmos utilizando Scroll View ou não?”.
+
+[10:13] Então, precisamos ter esses detalhes que só conseguimos conforme formos praticando. Eu quis mostrar a importância do Scroll View justamente para isso. Se amanhã ou depois nós precisarmos adicionar mais elementos dentro desse Stack View, dessa tela de detalhes que nós vamos construir, a tela já está preparada para isso.
+
+[10:37] Então, é muito interessante trabalharmos com o Scroll. Dá um leque de possibilidades muito maior para construirmos as nossas views.
+
+[10:49] A última coisa que queria fazer aqui é essa configuração da safe area do iOS, que é essa barra branca que está aqui. Imagine que temos que implementar essa imagem da tela de detalhes e nós não vamos utilizar a safe area, então é interessante ignorarmos para conseguirmos aproveitar toda a parte de cima da nossa tela.
+
+[11:14] Então, já vamos fazer essa configuração. A primeira coisa que tenho que fazer é selecionar a view, então selecionei a view. Vou vir nesse ícone da folha, que é o primeiro ícone, e vou desmarcar essa opção “Use Safe Area Layout Guide”.
+
+[11:33] Clico nesse checkbox e ele já reposiciona aqui. Mas, quando eu estou utilizando o Scroll View, eu ainda preciso fazer uma outra configuração. Vou rodar aqui para você ver.
+
+[11:48] Vou “buildar” de novo, clico aqui. Repare que ele ainda não respeita essa configuração que nós setamos para a view. Nós precisamos fazer outra configuração para o Scroll.
+
+[12:00] O que eu vou fazer? Vou selecionar o “Scroll View” e vou vir aqui nessa quarta opção. Na verdade, nessa opção do “Show the Size inspector”, eu tenho essa opção que é esse “Content insets”, essa opção aqui.
+
+[12:34] Ele está “Automático”, mas podemos colocar “Never”, que é justamente a configuração que nós queremos para o Scroll View entender essa configuração da safe area que acabamos de colocar. Quando eu clico aqui, agora sim ele aproveita todo o espaço que temos aqui.
+
+[12:57] Então, vimos aqui várias coisas interessante que vamos utilizar daqui para frente, como o uso do Scroll View. Nós combinamos o uso do Scroll View com o Stack View e também aprendemos a utilizar essas configurações para customizar a nossa view. Então, é isso que eu queria te mostrar nesse vídeo.
+
+@@05
+Configuração do StackView
+
+Uma das técnicas de auto layout, quando trabalhamos com o UIKit, se chama constraints. Através dela conseguimos configurar regras para determinados elementos, dizendo como devem se comportar.
+De acordo com o que estudamos na aula, quais condições devemos satisfazer para estar em conformidade com as regras das constraints?
+
+Para alterar a distribuição dos elementos de forma igual, basta alterar a propriedade 'Distribution' no storyboard para: 'Fill Equally'.
+ 
+Alternativa correta! Correto! Quando setamos a propriedade 'Distribution' para 'Fill Equally', o Stackview divide seu tamanho igualmente entre os elementos.
+Alternativa correta
+Para alterar a distribuição dos elementos de forma igual, basta alterar a propriedade 'Distribution' no storyboard para: 'Fill'.
+ 
+A opção 'Fill' preenche o espaço disponível do Stackview. Se o tamanho do elemento não preenche todo seu espaço, ele estica o elemento de acordo com sua prioridade.
+Alternativa correta
+Podemos alterar a distribuição do tamanho do stackview de forma igual, aplicando constraints de largura com o mesmo valor nos elementos.
+ 
+Como estamos trabalhando com Stackview, não precisamos aplicar constraints para dividir o tamanho do Stackview.
+
+@@06
+Faça como eu fiz: Criando Views de diferentes maneiras
+
+Há diversas maneiras de construir uma nova tela. Podemos simplesmente arrastar um novo UIViewController para o storyboard e começar a utilizar essa View. Outra forma seria a utilização de Views desacopladas do storyboard, através de xib. Dessa maneira, criamos Views com um maior índice de reutilização dentro do projeto, já que ela não de um fluxo específico no storyboard. E por último, podemos criar Views programaticamente, ou seja, através de código. Nesse caso, não temos ajuda do interface builder (parte visual). Como podemos criar uma View utilizando xib?
+
+Opinião do instrutor
+
+Quando criamos um novo ViewController, podemos marcar a opção do Xcode criar uma View junto com a classe de ViewController.
+
+@@07
+O que aprendemos?
+
+Nesta aula, aprendemos:
+Criar novas telas
+Há diferentes maneiras de se trabalhar com Views no iOS. Aprendemos duas delas, que são: o uso de storyboard e xib. A vantagem do xib em relação ao storyboard é o desacoplamento da view e a reutilização em várias partes do projeto.
+Uso do UIScrollView
+ScrollView é um componente muito utilizado para colocar mais elementos do que a área visível do dispositivo.
