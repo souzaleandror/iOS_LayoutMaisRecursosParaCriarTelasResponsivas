@@ -221,7 +221,10 @@ A TableView é sem dúvida um dos componentes mais utilizados na construção da
 
 @@01
 Projeto da aula anterior
+<<<<<<< HEAD
 PRÓXIMA ATIVIDADE
+=======
+>>>>>>> 5bf4c9b (Class 02 - Using UIStackView done)
 
 Se você deseja começar o curso a partir desta aula, pode fazer o download do projeto desenvolvido até o momento.
 
@@ -415,7 +418,6 @@ Criando outlets
 
 @@06
 Uso do UIStackView
-PRÓXIMA ATIVIDADE
 
 Há diversas maneiras de se criar uma View, e pensando em boas práticas o ideal é entendermos o contexto geral da View para que possamos tomar as melhores decisões, principalmente em relação a manutenibilidade, ou seja, a capacidade de mudanças na View sem que prejudique o que foi construído. Pensando nesse assunto, qual a principal vantagem que vimos no StackView em relação as constraints?
 
@@ -431,7 +433,6 @@ A principal vantagem é que quando trabalhamos com UIStackView, não podemos uti
 
 @@07
 Faça como eu fiz: Configurando o header
-PRÓXIMA ATIVIDADE
 
 Nessa aula, introduzimos o assunto principal do curso que é o uso do UIStackView. Com ele podemos fácilmente empilhar elementos tanto na horizontal quanto na vertical. Esse componente pode ser utilizado sempre que você precisar colocar elementos um embaixo do outro ou lado a lado. Como podemos adicionar um UIStackView?
 
@@ -441,7 +442,6 @@ Para adicionar um StackView na View, devemos abrir a biblioteca de elementos no 
 
 @@08
 O que aprendemos?
-PRÓXIMA ATIVIDADE
 
 Nesta aula, aprendemos:
 Uso do StackView
