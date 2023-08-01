@@ -737,3 +737,206 @@ Criar novas telas
 Há diferentes maneiras de se trabalhar com Views no iOS. Aprendemos duas delas, que são: o uso de storyboard e xib. A vantagem do xib em relação ao storyboard é o desacoplamento da view e a reutilização em várias partes do projeto.
 Uso do UIScrollView
 ScrollView é um componente muito utilizado para colocar mais elementos do que a área visível do dispositivo.
+
+#### 01/08/2023
+
+@04-Criando View de detalhes
+
+@@01
+Projeto da aula anterior
+
+Se você deseja começar o curso a partir desta aula, pode fazer o download do projeto desenvolvido até o momento.
+
+https://github.com/alura-cursos/alura-viagens-parte-II/archive/7b58edc250f7630420ab6c74fe5a7066c9360994.zip
+
+@@02
+Estrutura da tela detalhes
+
+[00:00] Continuando a implementação da nossa tela de detalhes, no vídeo anterior, nós estudamos sobre o uso do Scroll View, e nós ilustramos isso através de um Stack View com várias views coloridas.
+[00:13] Vou começar, então, apagando esse “Stack View” que nós utilizamos apenas para exemplificar e vou deixar apenas o “Scroll View” que já havia configurado.
+
+[00:24] A partir de agora, vamos analisar a tela de detalhes do simulador para entendermos por onde vamos começar. O primeiro elemento que temos aqui em cima é uma imagem, como você pode ver, a imagem da viagem selecionada.
+
+[00:41] Nós temos um botão “Voltar” e logo abaixo temos várias labels e ícones também. O que é importante destacarmos agora é essa margem que nós temos entre as labels, tanto na margem esquerda, leading, quando na margem esquerda trailing.
+
+[01:02] Nós temos um valor para deixar esse espaçamento, mas isso não acontece na imagem, a imagem fica realmente bem presa à margem com o valor de 0, tanto na esquerda quanto na direita e na parte superior.
+
+[01:19] É importante observarmos isso porque se utilizássemos, por exemplo, um Stack View e colocássemos essa imagem dentro do Stack View com espaçamento, com um valor entre a margem esquerda e direita, esse espaçamento também ocorreria na imagem, ficaria uma faixa branca.
+
+[01:40] E nós não queremos deixar essa margem na imagem, somente nos elementos e nas labels de dentro do Stack View. Então, vamos começar criando uma view onde vamos colocar uma imagem dentro e, logo abaixo, colocamos um Stack View com o espaçamento.
+
+[02:01] Dessa forma, o espaçamento vai ser aplicado na margem esquerda e direita de todas as labels que estiverem dentro do Stack View, e não na imagem.
+
+[02:12] Então, vamos começar. Vou começar abrindo nossa biblioteca de elementos e vou procurar por “View”, clicar e arrastar para dentro da nossa tela. Vou alterar a altura dela para “235”, e agora vamos setar algumas constraints para prender essa view.
+
+[02:44] Vou abrir o painel de constraints, vou prender com o valor “0”, porque queremos que a imagem não fique com nenhuma margem, tanto na esquerda quanto na direita e no topo.
+
+[02:57] Aqui eu não vou deixar uma constraint de altura fixa, vou colocar uma constraint proporcional ao tamanho da tela. Nós falamos um pouco sobre proporcionalidade no curso anterior. Basicamente, ela nos ajuda se quisermos, por exemplo, escalar nosso projeto para iPad e tudo mais, ele não vai ter um tamanho fixo em relação à tela, ele vai ter um tamanho proporcional à tela.
+
+[03:22] Então, nos ajuda nesse sentido. É isso que vou fazer. Aqui a “View” vou colocar um nome só para não nos perdermos ao longo do caminho porque vai ter vários elementos na nossa hierarquia. Então, “Image Viagem View”.
+
+[03:47] Então, o que vou fazer? Vou segurar a tecla “Ctrl” do meu teclado, vou clicar e arrastar parao “Scroll View”. Tenho aqui várias opções e a opção que vou selecionar vai ser essa “Equal Widths”, então tenho que marcar essa opção.
+
+[04:06] Isso já nos ajuda nesse sentido. E vou fazer a mesma coisa com a altura, então clico, arrasto e falo que ele tem uma altura igual à proporção da tela, no caso do Scroll View.
+
+[04:25] Mas eu ainda tenho erro, porque não terminei de configurar a altura dos elementos que vão ficar dentro do Scroll View. Havíamos comentado que teríamos um Stack View com várias labels dentro, então é isso que vou colocar agora.
+
+[04:44] Vou aproveitar e vou colocar um “Vertical Stack View” para terminarmos de solucionar esses problemas com as constraints. Vou clicar e vou reposicionar mais ou menos para o tamanho que quero que o meu Stack View fique, então vou clicar e redimensionar.
+
+[05:05] Aqui, eu procuro não aplicar as constraints direto, como disse, às vezes o Scode dá uma travada, então prefiro clicar e arrastar manualmente.
+
+[05:16] Aqui, vou deixar “0” na margem superior, “16” na margem lateral esquerda, porque nós queremos que as labels fiquem com espaçamento, “16” também na margem da direita, e “0” na margem de baixo.
+
+[05:34] Vou clicar em “Adicionar”. Agora, o que vou fazer? Vou colocar uma label dentro do Stack View. Vou clicar, arrastar e colocar aqui, só para ele solucionar o problema da altura. Quando colocamos um elemento dentro do Stack View, ele assume a altura de acordo com o elemento que nós colocamos.
+
+[05:56] Vou aproveitar e vou renomear essa label para começarmos a ganhar um pouco de cor nessa tela que estamos construindo. Vai ser assim, “Pacote de Viagem”. Isso aqui estamos deixando fixo porque vamos desenhar a tela, depois vamos criar os outlets e citar esses valores conforme a viagem selecionada.
+
+[06:26] “Pacote de Viagem para Cancun All Inclusive”. Vamos aproveitar e vamos alterar a fonte, vamos utilizar aquela fonte que já estávamos utilizando, essa daqui, “Kohinoor Devanagari”.
+
+[06:52] Também vamos alterar o estilo, vou colocar aqui “Semibold”, e o tamanho, que vai ser “21”. Vou alterar para “21”. Repara que a label não coube em uma linha só, então vamos colocar mais de uma linha através dessa opção “Lines” que temos aqui.
+
+[07:15] No próximo passo, vou colocar uma UIImage dentro dessa view que nós criamos aqui em cima, vou setar as constraints para ela. Vou prendê-la ao topo, à esquerda, à direita e a baixo com o valor de “0”, ou seja, ela vai ficar presa.
+
+[07:33] E, dessa forma, nós conseguimos deixar a imagem ocupando todo o espaço superior, e a label com uma margem que foi a do Stack View, quando setamos as constraints do Stack View. Então, conseguimos deixar esse espaçamento aqui.
+
+[07:51] Vou rodar o projeto para testarmos. Clico aqui, então já estamos mostrando a label e, a seguir, nós continuamos com a implementação da imagem e dos outros elementos que temos aqui.
+
+@@03
+Empilhando elementos
+
+[00:00] Continuando, nós vamos adicionar uma nova label, que é a label de subtítulo. Nós já temos aqui uma imagem, um título e vamos adicionar um subtítulo. Vou copiar e colar só para ganhar um pouco de tempo, vamos alterar apenas a formatação da fonte.
+[00:17] Vou vir aqui, vou escolher esse tipo de fonte que é um pouco mais fina, “Kohinoor Telugu”, “Regular”, e o tamanho vai ser “14”. Vou alterar também o texto, vou colocar "Aéreo + Hospedagem”.
+
+[00:48] Vou também setar uma imagem fixa por enquanto, enquanto nós não estamos utilizando a viagem selecionada na Table View, só para ver como está ficando a nossa view. Quando eu seto uma imagem fixa, repara que ele traz um corte tanto na esquerda quanto na direita.
+
+[01:05] Nós podemos melhorar essa visualização mudando o “Content Mod”. Nós escolhemos a opção “Aspect Fill” e ele preenche esse espaço, como se fosse um zoom, para ocupar todo o espaço disponível.
+
+[01:23] Vamos continuar agora colocando alguns ícones que vamos precisar utilizar para deixar nosso layout parecido com esse. Temos, aqui em cima, um botão “Voltar”, temos esse ícone do Sol, temos três ícones da hospedagem, do que está incluso, da passagem aérea.
+
+[01:46] E esses ícones nós não temos ainda, eles vão estar disponíveis para você fazer o download nessa seção do curso, então você pode baixar sem nenhum problema. Depois você pode selecionar todos eles e pode incluir nessa pasta de “Assets”.
+
+[02:09] Vamos voltar para a tela de detalhes. Vamos aproveitar e colocar o botão “Voltar” porque ele vai ser bem útil para testarmos e não precisarmos ficar buildando o app toda hora para voltar para a tela anterior.
+
+[02:20] Vou procurar por “Button”, vou colocar o botão aqui. Repara que ele vem com o título escrito “Button” mesmo, então vamos tirar, vamos deixá-lo sem texto nenhum. Vou abrir aqui o menu lateral, vou apagar o título.
+
+[02:39] E aqui nós temos uma seção de “Image”, onde podemos colocar uma imagem nesse botão. Vou procurar por “icon_back”, que é o “Voltar”, vou deixar o tamanho dele “25” por “25”, e vamos setar umas constraints aqui.
+
+[03:03] Vou começar setando uma constraint na margem esquerda, leading, de “10”; na margem superior, “35”; e, altura e largura. Vou dar um “Add Constraint” e temos, então, um ícone na parte superior.
+
+[03:22] Vou aproveitar e vou criar uma ação para esse botão, e também vou criar os outlets dessas labels e dessa imagem. Então, vamos lá, seleciono o elemento, clico nesse botão superior direito e venho em “Assistant”.
+
+[03:38] Ele vai dividir a minha tela, uma parte com a view e outra parte com o ViewController, com o arquivo, com a classe. Vou criar um MARK para separar o nosso código e deixar mais organizado com os nossos IBOutlets.
+
+[03:57] Vou criar o outlet da imagem, então vou colocar “viagemImage”, vou dar um “Connect”; com o título, clico e arrasto para cá, “tituloViagemLabel”; e com o subtítulo, que é essa label que nós acabamos de colocar aqui, “subtituloViagemLabel”, e vou dar um “Connect”.
+
+[04:31] Vou criar um novo marcador para o nosso método viewDidLoad(), que é View life cycle, “ciclo de vida da view”, e vou criar aqui mais um marcador com os nossos Actions.
+
+[04:42] Esses MARKs só servem para organizar o nosso código um pouco melhor. Por exemplo, se eu tivesse mais de um botão com ação, eu colocaria tudo dentro desse MARK: - Actions que eu criei aqui.
+
+[04:58] Aqui é importante que, nessa opção “Connection”, esteja selecionada a opção “Action”. “Type” vou escolher “UIButton”, e o nome, geralmente, na maioria das vezes, nós escrevemos em inglês, mas estamos escrevendo o código em português.
+
+[05:19] Se fosse em inglês, poderia ser “didTapBackButton”, por exemplo, ou “tapOnBackButton”, coisas desse tipo. Como estamos escrevendo em português, eu vou colocar “botaoVoltar”, e vou dar um “Connect”.
+
+[05:43] Um ponto importante é entendermos sobre a navegação de telas mais uma vez. Quando precisamos chamar uma nova tela, nós utilizamos esse método do navigationController, chamado pushViewController.
+
+[05:57] Mas, nós não queremos chamar um novo Controller igual ao que tínhamos agora a pouco, senão vamos instanciar mais uma vez o mesmo ViewController. Não é isso que nós queremos, nós queremos apenas voltar para o ViewController que já estava instanciado, que é a home.
+
+[06:15] Então, quando já temos o ViewController instanciado e queremos voltar, é bem simples: nós chamamos o navigationController.popViewController, e aqui eu passo true.
+
+[06:29] Vou rodar nosso app para testarmos, vou clicar em qualquer viagem e ele vai abrir, então, a implementação que nós acabamos de fazer. Então, temos aqui o título, o subtítulo e a imagem.
+
+[06:51] Por enquanto, eles estão sem os espaçamentos corretos, então vão ficar bem perto um do outro, mas, conforme formos avançando, vamos corrigindo todos esses espaçamentos.
+
+@@05
+Múltiplos StackViews
+
+[00:00] Continuando o desenvolvimento da nossa view de detalhes, nós já adicionamos o número de dias com o ícone do Sol e a tarja de desconto. Agora, vamos seguir para o preço real do pacote junto com o período de validade.
+[00:18] Então, podemos separar tudo isso daqui em um único bloco para desenvolvermos juntos. O que temos que ter atenção aqui? Mais uma vez, nos deparamos com informações lado a lado, então já podemos pensar em um “Horizontal Stack View” para empilharmos elementos lado a lado.
+
+[00:38] Só que dentro de cada “Horizontal Stack View”, também temos elementos um embaixo do outro, então podemos ter um “Horizontal Stack View” e dois “Vertical Stack View”. Um aqui e o outro aqui.
+
+[00:53] Isso nos mostra que é possível combinarmos o uso de Stack Views para conseguirmos solucionar o nosso problema de construção de view de desenhar as nossas telas. Então, é muito comum nós utilizarmos vários Stack Views um dentro do outro, com mais elementos, enfim, e ele nos ajuda na construção das views.
+
+[01:17] Então, é isso que vamos fazer. Vamos começar colocando mais um “Horizontal Stack View”, vou clicar e arrastar para cá. Ele vai apontar vários problemas com constraints porque nós não colocamos nenhum elemento dentro, mas não tem problema, já solucionamos isso.
+
+[01:38] Dentro desse “Horizontal Stack View”, vou colocar dois “Vertical Stack View”, um aqui, vou dar um “Command + C” e "Command + V”, e o outro aqui. Então, é essa a estrutura que tem que ficar: “Horizontal Stack View” e, dentro dele, dois “Vertical Stack View”.
+
+[01:58] Então, vamos começar colocando uma label para ganharmos tempo, vou clicar e arrastar para cá. Aqui, nós temos um problema com a distribuição do nosso Stack View. Mais uma vez, precisamos utilizar a distribuição de igualdade, ou seja, o número de elementos que eu colocar dentro, ele vai dividir a largura e fazer com que todos caibam lá dentro.
+
+[02:23] Então, vou selecionar aqui esse “Fill Equally”. Com a label, agora vamos começar a trabalhar de verdade. Vou alterar o valor, então o texto vai ser “Válido para o período de:”. Então, ele vai ficar assim.
+
+[02:44] Vou aproveitar para setar uma constraint de altura porque vamos precisar diminuir um pouco esse espaço, então vou setar uma constraint com o tamanho de “21”, e vou alterar a fonte.
+
+[02:57] Vamos vir aqui em “Custom”, vamos utilizar aquela fonte que já estamos acostumados, essa “Telugu”, vou alterar o tamanho para “14” e vou dar um “Done” para confirmar.
+
+[03:17] Para ganhar tempo, como já formatamos a label, vou dar um “Command + C” e um “Command + V”, e vou alterar apenas o texto, “1 de setembro a 30 de novembro”.
+
+[03:31] E, do outro lado, vamos fazer algo parecido. Vou copiar uma label, vou colar aqui. Só precisamos ter atenção para que ele fique dentro da hierarquia do Stack View. Ele está fora, vou clicar e vou arrastar aqui para dentro.
+
+[03:47] Vou fazer mais uma cópia, “Command + C” e “Command + V”. Agora vamos alterar os textos. Aqui, vou colocar o valor real do pacote com o desconto, “R$ 4.299”, e vou alterar a fonte. A fonte vai ser essa aqui, “Kohinoor Devanagari”, tamanho vai ser “22”.
+
+[04:20] Vou alinhá-la à direita e vou alterar também o estilo da fonte que está “Regular”, colocar “Semibold”, e a cor, “System Orange Color”. Vamos escolher a cor laranja. Aqui embaixo vou alterar também o texto, aqui vai ser “até 12x no cartão”. Vou, novamente, alinhar à direita e vou diminuir o tamanho para “10”.
+
+[05:03] Então, vou rodar o projeto para testarmos e vermos como ficou. Vamos subir o simulador, vou clicar em qualquer viagem. Olha que interessante, temos já um resultado bem parecido com o do nosso simulador.
+
+[05:23] Vou só aproveitar e colocar um espaçamento entre esse Stack View que acabamos de desenvolver e essa linha divisória. Então, vamos fazer isso agora, vamos colocar um espaçamento, uma view com uma altura de “1”, uma cor cinza e outro espaçamento.
+
+[05:45] É importante falarmos de dois aspectos. Nós conseguimos colocar um espaçamento dentro do Stack View, então, por exemplo, se eu selecionar esse Stack View principal que tem todos os elementos dentro, eu tenho aqui essa opção “Spacing”, onde posso colocar um espaçamento geral em todos os elementos.
+
+[06:06] Vou mexer aqui, presta atenção na view, como os elementos vão se comportar. Estou clicando, repara essa label aqui, “Aéreo + Hospedagem”. Vou aumentar o espaçamento.
+
+[06:19] Repara que está ficando com o espaço cada vez maior, mas não é somente nesse Stack View aqui, nós estamos aplicando em todos os elementos, todas as labels estão ficando com o mesmo espaçamento de “14”.
+
+[06:35] Nesse caso, não é isso que nós queremos fazer. Vou colocar aqui um “0” para nós tirarmos o espaçamento que colocamos. O que queremos fazer é colocar um espaçamento em pontos específicos. Eu quero colocar um espaçamento aqui, na linha divisória, e outro espaçamento para separar o próximo bloco.
+
+[06:56] Para colocarmos esse espaçamento, podemos colocar uma view com a cor de fundo e setar uma constraint de altura. Isso vai nos ajudar com o espaçamento. Olha que bacana, vou pegar uma view, vou clicar e vou arrastar para cá, e vou setar uma constraint de altura.
+
+[07:20] Vou colocar aqui uma constraint de “10”, por exemplo, “10” de altura. Vou aplicar e nós temos aqui uma view que vai nos dar esse espaçamento que estamos precisando.
+
+[07:35] Vou até renomear aqui para nos ajudar, “Espaçamento”. Agora, vamos colocar uma linha divisória que é mais ou menos o mesmo esquema. Vou até copiar e colar isso aqui, vou dar o “Command + C” e “Command + V”, e ao invés de “Espaçamento”, vou colocar o nome “Divisor”, que podemos utilizar em outros pontos.
+
+[08:02] A única coisa que vou fazer é alterar a constraint de altura que está “10”, vou alterar para “1”, e também alterar a cor de fundo. Vou selecionar o “Divisor > Background” e vou escolher essa cor aqui, “System Gray 5 Color”.
+
+[08:22] Clico aqui e coloco outro espaçamento. “Command + C” e “Command + V” e arrasto para baixo da linha divisória. Então, ficou assim: o “Stack View” que acabamos de implementar, o “Espaçamento” com altura de “10”, o “Divisor” e outro “Espaçamento”.
+
+[08:42] Vou rodar mais uma vez o projeto para testarmos, vamos subir o simulador, clico em uma viagem. Olha que bacana, temos aqui um espaçamento e uma linha dividindo igual estamos copiando do simulador.
+
+[09:03] Durante a aula, eu estou mostrando a fonte, o tamanho, a altura e tudo mais, mas se você trabalha já em uma empresa de desenvolvimento de apps, você já deve ter visto alguma ferramenta como Zeplin ou Figma que nos ajuda a construir esse layout.
+
+[09:22] Geralmente, é um time de X designers que deixa todo o material pronto lá para nós podermos utilizar. Aqui, como eu já tenho as medidas, eu vou passando para vocês ao longo da aula para deixarmos o nosso projeto igual esse ao lado.
+
+[09:40] Agora falta essa última etapa que é “O que está incluso”, com esses ícones, e a ideia é continuarmos praticando o uso do Stack View, que é um componente muito importante na criação de layout para iOS.
+
+@@06
+Entendendo erros de constraints
+
+Conforme estudamos na aula, por padrão o UIStackView preenche seu espaço com o tamanho dos elementos que adicionamos dentro dele (dependendo da distribuição configurada).
+Em um StackView com a distribuição .fill, como podemos alterar o tamanho de uma imagem colocada dentro dele?
+
+Podemos simplesmente configurar sua altura e largura no campo Show the Size Inspector.
+ 
+Alternativa correta
+Podemos alterar a distribuição do StackView para equally.
+ 
+Alternativa correta
+Podemos configurar constraints de altura e largura na imagem.
+ 
+Alternativa correta! Ao adicionar constraints na imagem, conseguimos configurar o tamanho do elemento.
+
+@@07
+Faça como eu fiz: StackView dentro de StackView
+
+O uso de UIStackView é muito interessante na hora de montar o layout de um aplicativo. Nessa aula praticamos seu uso em um layout um pouco mais complexo, onde precisamos utilizar múltiplos StackViews.
+
+Opinião do instrutor
+
+É muito comum o uso de mais de um StackView dentro da hierarquia de Views. Ele acaba nos ajudando a empilhar elementos na horizontal e na vertical. No nosso caso, na tela de detalhes, em alguns momentos havia título de uma seção seguido de ícones na horizontal. Por isso, optamos por utilizar vertical StackView e horizontal StackView na mesma hierarquia.
+
+@@08
+O que aprendemos?
+
+Nesta aula, aprendemos:
+Distribution
+Há algumas maneiras de distribuir elementos dentro do StackView. As principais são: Fill onde os elementos ocupam todo espaço disponível. E também a 'Fill equally' onde todos os elementos ocupam espaços iguais dentro do StackView.
+Multiplos StackViews
+Podemos fazer uso de vários StackViews para conseguir desenvolver o layout proposto. No nosso caso, na tela de detalhes discutimos essa técnica que nos auxilia empilhar elementos lado a lado ou um embaixo do outro dentro da mesma View.
