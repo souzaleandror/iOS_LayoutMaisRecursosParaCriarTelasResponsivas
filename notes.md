@@ -940,3 +940,274 @@ Distribution
 Há algumas maneiras de distribuir elementos dentro do StackView. As principais são: Fill onde os elementos ocupam todo espaço disponível. E também a 'Fill equally' onde todos os elementos ocupam espaços iguais dentro do StackView.
 Multiplos StackViews
 Podemos fazer uso de vários StackViews para conseguir desenvolver o layout proposto. No nosso caso, na tela de detalhes discutimos essa técnica que nos auxilia empilhar elementos lado a lado ou um embaixo do outro dentro da mesma View.
+
+#### 02/08/2023
+
+@05-Navegação entre telas
+
+@@01
+Projeto da aula anterior
+
+Se você deseja começar o curso a partir desta aula, pode fazer o download do projeto desenvolvido até o momento.
+
+https://github.com/alura-cursos/alura-viagens-parte-II/archive/9fc04d5c93e07fdc351a3a881d92565a4020bda6.zip
+
+@@02
+Elementos lado a lado
+
+[00:00] Vamos, então, para a última etapa da construção da nossa view, que é esse bloco do “O que está incluso” com esses ícones e o botão na parte inferior. Vamos começar colocando mais um Stack View, um “Vertical Stack View”, porque temos aqui um título, e aqui podemos colocar um “Horizontal Stack View”.
+[00:23] Vamos continuar praticando. Vou vir aqui, vou procurar um “Vertical Stack View”, clico e arrasto para baixo. Repara que ele tem que ficar dentro desse Stack View principal que temos aqui.
+
+[00:39] Vou começar colocando um título para ele, vou utilizar o mesmo título que nós já temos, porque a formatação da label vai ser a mesma, então vou copiar e colar aqui.
+
+[00:52] Repara que ele ficou fora da hierarquia do “Stack View”, então vou clicar e arrastar para dentro, ele tem que ficar aqui dentro. Vou alterar o texto, “O que está incluso”.
+
+[01:12] E vou colocar um espaçamento aqui, vou dar “Command + C” e “Command + V”, vou colocá-lo embaixo do título que acabamos de colocar, e agora vamos seguir com a prática do nosso Stack View, vamos colocar um “Horizontal Stack View”, porque vamos empilhar os elementos um ao lado do outro, como você está vendo aqui.
+
+[01:39] Vou vir na biblioteca, “Horizontal Stack View”, clico e arrasto para cá, ele tem que ficar dentro desse “Stack View”. E o que vamos fazer? Repara que aqui ele continua fora – clico e arrasto para cá. É bom sempre ficarmos de olho se ele está respeitando a hierarquia do Stack View pai que estamos colocando.
+
+[02:07] O que vamos fazer aqui? Vamos colocar alguns ícones. Vou começar setando um constraint de altura, só para corrigir esse problema de constraints, então seleciono o “Stack View” pai, desse bloco, e abro o painel de “Constraints”.
+
+[02:31] Vou colocar aqui uma constraint de altura no valor de “135”. Aí resolvemos esse problema porque ele sabe qual vai ser o tamanho que ele vai ocupar.
+
+[02:43] O que eu vou fazer? Vou colocar uma nova “View”. Na verdade, vão ser três “Views” aqui dentro, então já vou aproveitar e mudar o “Distribution” aqui para “Fill Equally”.
+
+[02:58] Copio e colo mais duas vezes porque vamos ter três blocos, e vamos começar colocando uma imagem, que vai ser o ícone que vai ficar ali dentro. Então, vou buscar por “Image View”, clico e arrasto para cá.
+
+[03:14] A altura e largura vão ser “35”, então “35” de largura e “35” de altura, vou dar dois cliques só para reposicionar aqui dentro. E agora vamos setar algumas constraints.
+
+[03:30] Vou começar setando uma constraint de altura e largura, e vou setar uma constraint ao topo no valor de “20”, e vou dar um “Adicionar constraint”.
+
+[03:49] Ainda falta setarmos uma constraint que é o alinhamento. Vou abrir o painel de “Alinhamento”, repara que temos o alinhamento vertical e horizontal, nós queremos o horizontal, então vou selecionar essa opção e vou clicar em “Adicionar”.
+
+[04:09] O alinhamento horizontal, nessa linha, vai ficar ao centro. É isso que estamos configurando aqui. E o que eu vou fazer aqui? Vou alterar a imagem para o ícone do hotel, então é esse ícone que vamos utilizar.
+
+[04:29] Logo abaixo, vamos adicionar uma label, vou clicar e arrastar para cá, e vou alterar o texto para “Quarto”. Vou também alterar a formatação, “System Custom”, família de fonte aquela que nós já estamos acostumados a trabalhar, que é essa aqui, “Telugu”.
+
+[04:54] Tamanho da fonte vai ser “14” e temos então a fonte que vamos utilizar aqui. Agora vamos setar as constraints para essa label. O que eu vou fazer?
+
+[05:10] Vou abrir o painel de constraints, vou citar uma constraint na margem superior, ou seja, estamos pinando a label em relação à imagem, e vou alinhar verticalmente. Na verdade, na horizontal, vou alinhar na horizontal, ao centro.
+
+[05:33] Então, fizemos a primeira view para praticar. Para ganhar tempo, eu vou copiar essa “View” que nós criamos aqui, vou dar um “Command + C” e “Command + V” mais uma vez, e vou alterar o nome dos ícones.
+
+[05:51] Aqui vai ser “icon_breakfast”, “café da manhã”, e aqui vou colocar “All Inclusive”. Ao lado, vai ser a passagem aérea, então “icon_airplane”, vamos alterar também o texto da label, “Passagem Aérea”.
+
+[06:20] Então, temos aqui essa seção dos itens inclusos. Vimos como utilizamos o “Horizontal Stack View” para resolver esse problema, agora falta setarmos o botão abaixo.
+
+[06:38] Esse botão não vai fazer parte do “Scroll”, então vou ter que fazer uma alteração na constraint inferior do nosso “Scroll”. Olha só o que eu vou fazer, vou alterar uma constraint.
+
+[06:52] Quando eu clico no elemento no nosso painel, eu consigo saber quais são as constraints que ocupam esse elemento. Então, tenho aqui uma constraint de altura, de largura, margem inferior e margem superior. A constraint que eu quero alterar é constraint de margem inferior.
+
+[07:11] Aí ele me dá essas opções aqui, eu dou dois cliques e ele me traz esse valor “Constant”, que é o valor “0”, ou seja, nós pinamos o Scroll View para que ele ficasse na margem inferior mesmo.
+
+[07:28] Agora, vou alterar esse valor, vou colocar “80” para ele aumentar o espaço que vamos utilizar para colocar o botão, e vou colocar uma “View” aqui embaixo. Vou procurar por “View”, vou clicar e arrastar para cá.
+
+[07:50] E essa view eu vou pinar para que ela fique em relação ao Scroll View, à margem esquerda e direita e embaixo, mas com o valor de “0”. Então, vou pinar o valor de “0” para ela ocupar todo o espaço.
+
+[08:05] Aqui dentro, posso colocar um botão, “Button”. Vou colocar um novo botão, a altura desse botão vai ser “45”, e vou piná-lo com as constraints. Vou deixar uma margem de “14” esquerda, “14” direita, e vou colocar uma constraint de altura.
+
+[08:41] Ele está reclamando porque nós precisamos centralizar, então vou abrir o menu de centralização, vou centralizá-lo aqui e aqui. Vou apagar essa constraint.
+
+[09:01] Deixa eu ver o que ele está reclamando. Aqui nós setamos a altura, mas vamos fazer o seguinte, ele está dando como valor duplicado, então vou remover essas constraints que acabamos de colocar e vou redimensioná-lo para cá.
+
+[09:24] Ao invés de eu setar um valor de altura e largura, eu vou centralizá-lo aqui e vou prender aos lados. Então vou prender aqui e aqui. A única coisa que tem que tomar cuidado é a margem esquerda estar com o mesmo valor da margem direita.
+
+[09:42] Coloquei aqui o valor nas margens e agora vamos alterar a cor de fundo desse botão. Repara que aqui “Background color” a cor está “Default”, que é branco, então vamos mudar para essa cor que eu estou com o cursor de mouse, “System Indigo Color”.
+
+[10:02] Clico aqui e agora vou alterar o texto do nosso botão. O texto vai ser “Continuar”. Vou alterar a cor da fonte para branco, selecionei “Branco”, e vou alterar a fonte para uma fonte customizada. Nós já temos as nossas fontes, vou selecionar essa. O tamanho dela vai ser “16”, “Semibold”, e criamos o nosso botão “Continuar”.
+
+[10:40] Eu vou rodar o projeto para testarmos toda essa implementação que nós fizemos para ver se está tudo ok. Clico aqui, então temos aqui um layout parecido com esse que estamos copiando no nosso simulador.
+
+[11:00] Só para finalizar, vou colocar um espaçamento entre o título e a imagem. Repara que aqui do lado temos o espaçamento um pouco maior. Então, vou pegar essa view de “Espaçamento”, dou um “Command + C” e “Command + V”, e vou arrastar para cima do título.
+
+[11:21] Ficou dessa maneira aqui, “Espaçamento”, título e o resto dos elementos. Vou rodar o projeto mais uma vez para testarmos.
+
+[11:33] Cliquei aqui, já temos a nossa tela de detalhes. Agora o que precisamos fazer é capturar o objetivo clicado na Table View e mandar esse objeto para a tela de detalhes para alterarmos essas informações.
+
+@@03
+Evento de clique
+
+[00:00] Para finalizar, agora precisamos terminar a tela de detalhes. Quando fazemos o clique em uma viagem, na Table View, repare que sempre chamamos a mesma view com a mesma imagem, com o mesmo título e com os mesmos valores, porque isso está tudo estático. Nós criamos a view dessa forma somente para visualizarmos de forma rápida e fácil a criação da view.
+[00:27] Agora, de fato, precisamos enviar para o “View Controller” o objeto selecionado na Table View. Então, vamos relembrar. Quando nós clicamos em uma célula da Table View, nós temos um método específico que é disparado desse evento clique, que se chamada “didSelectRow”,
+
+[00:45] Esse método faz parte desse protocolo de UITableViewDelegate e, com ele, temos acesso ao clique do usuário em uma célula da Table View. Se analisarmos, até agora estamos apenas instanciando o ViewController de detalhes e chamando a navigationController para puxar esse ViewController, ou seja, para exibir esse ViewController.
+
+[01:10] Então, em momento algum nós estamos pegando qual foi a viagem selecionada, e não estamos passando para o ViewController de detalhe qual foi a viagem selecionada. E é isso que precisamos fazer agora.
+
+[01:23] Para acessarmos a viagem selecionada, temos dois problemas. Um é mais simples, que é da célula de destaques. Temos também a célula de ofertas, que temos duas viagens dentro de uma única célula.
+
+[01:46] Primeiro, vamos começar pelo caminho mais simples que é pegar a viagem selecionada da viewModel de destaques, que são essas células maiores.
+
+[01:57] Para fazer isso, eu vou criar uma constante chamada viewModel e, para acessarmos, eu vou pegar a secaoDeViagens, que temos como uma variável desse Controller, ela é opcional, então vou colocar o ponto de interrogação. E para ter acesso a qual viewModel foi selecionada, vou pegar o [indexPath.row].
+
+[02:30] Agora, essa viewModel tem uma lista de viagens que nós utilizamos para preencher a viewModel de acordo com o seu tipo. A viewModel de ofertas tem uma célula com duas viagens; a de destaque tem três viagens. Conforme o tipo, temos uma lista de viagens.
+
+[02:53] Então, o que eu vou fazer? Vou verificar qual o tipo dessa viewModel, fazer um switch viewModel?.tipo. Se for case .destaques, que é a célula maior, ou .internacionais, eu vou pegar a viagem selecionada, então let viagemSelecionada = viewModel?.viagens, mas temos uma lista de viagens, eu quero apenas a que foi selecionada.
+
+[03:29] Então, pego no [indexPath.row], ou seja, na linha selecionada. Essa é uma forma de pegarmos a viagem da viewModel de destaques. Vou isolar – ele não está sendo utilizado, vou colocar um break, a navegação dessa tela em um método separado.
+
+[04:00] Vou criar um novo método, vou chamar de irParaDestaques, onde vou criar no meu método uma viagem que temos que passar por parâmetro, e depois vamos encontrar uma forma de passar isso para o ViewController.
+
+[04:27] Aqui dentro desse switch, vou chamar esse método irParaDestaques e vou passar a viagemSelecionada.
+
+[04:41] Vou deixar como opcional para ele conseguir passar a viagem, nós já pegamos a viagem selecionada e agora precisamos passar isso para o ViewController de destaques. Como vamos fazer isso?
+
+[05:00] Podemos criar aqui uma variável que vou chamar de “viagens”, vou criar um MARK: - Atributos, var viagem: Viagem?, vou deixar isso opcional.
+
+[05:20] Nós poderíamos vir aqui, detalheController.viagem = viagem que estamos recebendo por parâmetro. Para ficar um pouco melhor a inicialização desse método, nós podemos criar esse método dentro da própria classe.
+
+[05:40] Aqui, há várias discussões, tem até design patterns chamado “Coordinator” que diz que seria melhor se isolássemos a chamada dos View Controllers em uma outra camada, ou seja, um controller não deveria saber que o outro existe, enfim.
+
+[05:56] Mas, aqui, para deixarmos um pouco melhor a inicialização desse DetalheViewController, eu vou fazer o seguinte. Vou entrar nele, vou criar um método inicializador, vou criar class func, vou chamar de instanciar, e vou passar por parâmetro a viagem que nós precisamos receber, viagem: Viagem, e vou retornar o próprio => DetalheViewController.
+
+[06:35] Aqui dentro, o que vamos fazer? Vamos criar let detalhesViewController, parecido com o que fizemos no ViewController da home, = DetalheViewController, vou inicializar passando o nome do XIB.
+
+[06:53] Aqui, podemos fazer assim, ou passamos o nome entre string, ou se você não curtir muito trabalhar com string com nome – porque a qualquer momento nós podemos digitar alguma coisa a mais ou algo assim e o app vai dar crash –, você pode chamar esse método da String, que é esse describing, aí você passa a própria classe.
+
+[07:18] Então, vou passar aqui o self. O que ele faz? Ele pega o nome da classe e converte isso para a string. Bundle eu passo nil e aqui eu pego o detalhesViewController, que estamos criando, .viagem é igual à viagem que estamos recebendo por parâmetro.
+
+[07:39] E eu retorno isso que é o return detalhesViewController. Aqui fica um pouco melhor porque eu faço o seguinte, eu apago toda essa parte, dou um instanciar e passo a viagem direto.
+
+[07:59] Aqui nós só precisamos verificar se a viagem existe, então vou fazer if let para verificar se o valor dessa viagem não é nil, então if let viagemSelecionada = viagem. Se existir, ele vai entrar no if e nós chamamos, então, a tela de detalhes.
+
+[08:23] Vou pegar essa viagemSelecionada e vou passar aqui dentro do instanciar. Vou rodar o projeto para ver se está tudo ok, se está buildando.
+
+[08:40] Vou clicar aqui, nós continuamos fazendo a navegação. Ainda não alteramos as labels nem a imagem porque ainda estamos configurando a inicialização da tela de detalhes.
+
+[08:55] E o próximo passo é fazer a mesma coisa para a célula de ofertas.
+
+@@05
+Delegate Pattern
+
+[00:00] Agora que já estamos conseguindo ter acesso à viagem selecionada na célula de oferta, nós precisamos, de alguma forma, enviar esse objeto para o ViewController que tem a navegação e que nos leva à tela de detalhes.
+[00:19] Então, aqui no “ViewController”, nós temos o método irParaDetalhe, onde nós precisamos receber um método e, então, nós conseguimos instanciar o DetalheViewController. E é isso que nós precisamos fazer, chamar esse método assim que nós fizermos o clique na célula de oferta.
+
+[00:47] Como eu renomeei esse método, nós vamos precisar renomeá-lo aqui embaixo também. Agora, o que nós precisamos fazer? Estou aqui na célula de “Oferta” e, de algum modo, nós precisamos enviar esse objeto para o ViewController, onde temos acesso à navegação das telas.
+
+[01:09] Existe um padrão de projeto no iOS, um design pattern, que se chama “Delegate” e é muito utilizado. Esse padrão de projeto nos permite enviar objetos em diferentes classes através de um “Delegate”, então nós delegamos uma função para quem implementar esse protocolo.
+
+[01:32] É mais ou menos isso que vamos fazer, vamos criar o protocolo que o ViewController vai implementar e, assim que fizermos o clique em uma célula, nós disparamos esse evento, esse “Delegate” para o ViewController que implementar esse padrão. É mais fácil vermos na prática.
+
+[01:50] O que eu vou fazer? Vou começar criando um protocolo, protocol. Aqui vou dar o mesmo nome da classe, só que com o sufixo “Delegate”, então, protocol OfertaTableViewCellDelegate.
+
+[02:08] Dentro desse protocolo, vamos ter um método que vai se chamar didSelectView, ou seja, acabou de selecionar a view, e vamos enviar qual foi a viagem que foi selecionada. Vou deixar como opcional, viagem: Viagem?.
+
+[02:28] Quando nós criamos esse protocolo, nós precisamos criar uma variável para termos acesso, no ViewController, indicando que queremos implementar esse protocolo, ou seja, nós precisamos de uma variável que vamos criar agora chamada Delegate.
+
+[02:41] Então, o que eu vou fazer? Aqui, vou criar uma variável chamada delegate, do mesmo tipo do protocolo que nós criamos, então vai ser OfertaTableViewCellDelegate?, opcional.
+
+[03:00] O que vamos fazer agora? Como temos acesso a essa célula lá no ViewController, no método onde nós renderizamos as células, nós vamos setar esse protocolo no ViewController. Como vamos fazer isso?
+
+[03:16] Vou abrir o “ViewController”. No método cellForRow, nós temos acesso à celulaOferta, então vou chamar celulaOferta.delegate = self, ou seja, estou falando que o ViewController vai implementar o delegate da célula de oferta.
+
+[03:36] Mas quando eu faço isso, ele obrigatoriamente precisa cumprir quais são os contratos que estão no protocolo, que é um método que nós criamos que é o didSelectView.
+
+[03:51] Então, nós precisamos implementar esse método nesse ViewController. Vou criar uma nova extensão aqui embaixo do ViewController, extension ViewController, e vou implementar aquele protocolo, então é OfertaTableViewCellDelegate.
+
+[04:11] Quando eu faço isso, eu tenho acesso ao método didSelectView. E agora que tenho acesso a esse método, vou chamar o método de navegação para a tela de detalhe porque eu já tenho o objeto viagem.
+
+[04:26] Então, irParaDetalhe, e passo aqui a viagem. Então, temos aqui um padrão que nós implementamos que se chama delegate. Só estou buildando para ver se não tem nenhum erro de compilação, “Command + B”.
+
+[04:45] E agora, sim, nós temos acesso à viagem selecionada na célula de oferta no ViewController. O próximo passo é terminarmos de colocar alguns outlets na tela de detalhe.
+
+[04:58] Então, nós já criamos alguns nos vídeos anteriores, vamos conferir quais já temos. Relembrando para ver quais são os outlets conectados, eu clico no elemento que eu quero e venho enssa aba de “Connection”.
+
+[05:17] Eu já tenho o título, já tenho o subtítulo, agora vamos criar um outlet para essa label que é a quantidade de dias, a diária. Vou abrir o nosso “Assistant” e vou clicar na label com a tecla “Ctrl” selecionada e arrastar para o “ViewController”.
+
+[05:45] O nome dessa label vai ser “diariaViagemLabel”, e vou dar um “Connect”. Então, vamos para o próximo que é o preço sem desconto. Cliquei nessa view, repara que ele selecionou toda a view, então às vezes eu tenho um pouco de dificuldade para encontrar qual elemento, mas posso utilizar esse menu lateral esquerdo.
+
+[06:16] O que eu vou fazer? Já que estou clicando no preço sem desconto e não estou conseguindo selecioná-lo de imediato, eu vou vir nessa “View” e vou procurá-lo por aqui. Então, tenho uma label de “-20%” e tenho esse preço sem desconto.
+
+[06:33] Repara que, às vezes, é mais interessante utilizarmos esse menu de hierarquia de views. Clico com a tecla “Ctrl” e arrasto para cá novamente, solto. O nome dessa label vai ser “precoSemDescontoLabel” e vou dar um “Connect”.
+
+[06:52] A mesma coisa com o preço da viagem. Clico no preço e crio o outlet “precoViagemLabel”, “Connect”. Já temos os outlets que precisávamos. Agora, para terminar, vamos criar um método para configurar esses outlets.
+
+[07:19] Vou criar um método chamado configuraView e vou implementar, que é basicamente toda a implementação da célula de “Destaques”, que nós já tínhamos aqui. Vou utilizar na tela de “Detalhes”.
+
+[07:41] Agora, a única coisa que precisamos fazer é pegar esse método e chamá-lo no viewDidLoad. Então, configuraView, estou chamando ele aqui, assim que a view for carregada, e agora podemos testar.
+
+[07:55] Vou “buildar” o nosso app para vermos e nós testamos toda a implementação feita até agora.
+
+[08:01] Bom, o “Pacote Natal” já está correto, o “Pacote Bonito” também. Vou voltar, vou selecionar “Beto Carrero”. Repara que ainda não está acontecendo nada, então vamos voltar aqui para vermos o que está acontecendo.
+
+[08:24] Faltou chamar o método que nós criamos. Temos aqui um print, vou tirar esse print daqui, e vou chamar o delegate e o método que é didSelectView, e vou passar a viagemSelecionada.
+
+[08:40] Vou rodar mais uma vez o app. Estamos utilizando essa variável com acesso ao protocolo que tem acesso ao método, e esse método é disparado nessa extensão que criamos da implementação do protocolo. Então, ele vem para cá.
+
+[09:02] Já subimos o simulador, deixa eu fechar isso aqui de trás, vou clicar em “Beto Carrero”, olha que bacana, já temos acesso Às viagens também da célula de oferta.
+
+@@06
+Voltar para tela anterior
+
+Qual método de navegação de telas utilizamos para voltar para a tela anterior?
+
+Podemos utilizar o método self.dismiss(animated: true, completion: nil).
+ 
+Alternativa correta
+Podemos utiizar o método self.navigationController?.popViewController(animated: true).
+ 
+Alternativa correta! Esse método utiliza o último ViewController da pilha do UINavigationController, para voltar para tela anterior.
+Alternativa correta
+Podemos utilizar o método self.present(ViewController, animated: true, completion: nil).
+
+@@07
+Faça como eu fiz: Células customizadas
+
+O pattern de Delegate é muito utilizado nas plataformas Apple. O objetivo é permitir a comunicação entre objetos. Um delegate pode disparar uma ação de volta para seu proprietário notificando a ação de um clique ou qualquer outro evento que queira notificar.
+
+Para utilizar esse padrão de projeto, precisamos definir um protocolo:
+protocol OfertaTableViewCellDelegate: AnyObject {
+    func didSelectView(_ viagem: Viagem?)
+}COPIAR CÓDIGO
+Em seguida criamos uma variável de referência fraca chamada delegate, com o tipo do protocolo criado.
+
+weak var delegate: OfertaTableViewCellDelegate?COPIAR CÓDIGO
+Em seguida, basta setar e implementar o protocolo para obter a comunicação entre objetos.
+
+@@08
+Projeto final
+
+Caso queira, você pode baixar aqui o projeto completo implementado neste curso.
+
+@@09
+O que aprendemos?
+
+Nesta aula, aprendemos:
+Usando Tag para identificar uma View
+É possível identificar Views através de tags. Dessa forma conseguimos distinguir por exemplo de onde vem o clique ou qualquer outra ação que precisássemos fazer com a View.
+Delegate Pattern
+Esse padrão permite a comunicação de objetos de forma desacoplada.
+
+@@10
+Conclusão
+
+[00:00] Chegamos ao final de mais um curso aqui na Alura. Parabéns por concluir essa etapa, foi uma trajetória muito legal, porque nós começamos criando um projeto do zero e chegamos a um projeto bem bonito, bem interessante.
+[00:14] Estudamos vários conceitos muito importantes que eu tenho certeza que você vai usar na sua trajetória profissional, na sua trajetória pessoal, criando seus próprios aplicativos.
+
+[00:29] Vamos agora revisar tudo que aprendemos nesse curso. A ideia era começar mostrando para você que existem formas de utilizarmos uma Table View com várias células diferentes. Essa foi a ideia da primeira etapa desse curso.
+
+[00:46] Nós criamos a célula de ofertas, que é diferente da célula de destaques, e depois nós partimos de fato para o uso do principal tópico desse curso que era a Stack View, que é uma forma de empilharmos elementos tanto na horizontal quanto na vertical.
+
+[01:06] Nós começamos dando uma olhada de como isso funciona, aqui na célula de ofertas, mas onde nós praticamos de verdade foi na tela de detalhes, que é essa tela quando nós clicamos e mostra os detalhes da viagem.
+
+[01:22] Então, aqui sim, nós utilizamos bastante, nós vimos que é possível colocar Stack View horizontal dentro de Stack View vertical, Stack View dentro de Stack View, muitas vezes fizemos uso disso.
+
+[01:36] O objetivo era mostrar para você que o Stack View é uma ferramenta, um componente que nos auxilia a criar os nossos layouts de uma forma muito mais fácil, porque nós não precisamos nos preocupar, por exemplo, com as constraints, quando apagamos um elemento ou o reposicionarmos, o que dá problema em todas as outras constraints.
+
+[01:59] Então, é legal você entender que o uso de constraint e Stack View andam juntos, não tem um melhor ou outro pior, sempre que você colocar o Stack View, provavelmente, você vai precisar colocar constraints, mas os elementos que você colocar dentro do Stack View são muito mais fáceis de você remanejar, dar manutenção, retirar e incluir do que as constraints.
+
+[02:25] Falamos também sobre o uso do Scroll View, que é um componente muito utilizado. Nós deixamos essa tela preparada para o Scroll caso precisasse crescer.
+
+[02:35] Falamos também sobre o uso de XIB, nós utilizamos na tela de detalhes uma view com XIB. Também discutimos um pouco sobre o uso do Storyboard, por que usar XIB ou por que usar Storyboard.
+
+[02:57] Nós conseguimos, de fato, fazer um apanhado geral falando sobre Auto Layout e explicando pontos muito importantes.
+
+[03:07] No final, nós criamos o “ViewController” de detalhes, onde nós configuramos todos os outlets, recebemos a viagem selecionada para o parâmetro, e chegamos ao resultado dessa tela de detalhes.
+
+[03:22] O meu conselho pessoal é que você continue praticando tanto o uso de constraints quanto Stack View. Uma ideia bem legal é você baixar aplicativos da loja, da Apple Store ou da Google Play, algum aplicativo que você gosta, que você admira, e tentar desenhar esse aplicativo você sozinho.
+
+[03:40] Que aí você vai começar a pensar de uma forma independente e vai precisar, provavelmente, rever um ou outro conceito, o que é muito importante.
+
+[03:50] O segredo de você conseguir criar layouts bacanas e bem feitos é a prática, nós só aprendemos de verdade praticando várias vezes. Então, espero que você consiga praticar isso no seu trabalho ou na sua vida pessoal e que esse conteúdo seja útil para você.
+
+[04:10] Ao final do curso, você vai ser direcionado à página de avaliação, então peço para que você deixe seu feedback, é muito importante para a nossa equipe. Até o próximo curso.
