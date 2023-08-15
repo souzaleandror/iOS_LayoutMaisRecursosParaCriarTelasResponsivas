@@ -1,4 +1,4 @@
-# Curso de iOS: auto layout com Constraints
+# Curso de iOS layout: mais recursos para criar telas responsivas
 
 Course completed => 29-02/July-August/2023
 
